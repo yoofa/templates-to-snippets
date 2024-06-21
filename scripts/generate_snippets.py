@@ -98,3 +98,19 @@ def generate_snippets(language_dir, language):
 
     snippets_file = os.path.join(SNIPPETS_ROOT, f"{language}.json")
     with open(snippets_file, 'w', encoding='utf-8') as f:
+        json.dump(snippets, f, ensure_ascii=False, indent=4)
+
+def main():
+    if not os.path.exists(SNIPPETS_ROOT):
+        os.makedirs(SNIPPETS_ROOT)
+
+    for language_dir in os.listdir(TEMPLATES_ROOT):
+        language_dir_path = os.path.join(TEMPLATES_ROOT, language_dir)
+        if os.path.isdir(language_dir_path):
+            language = language_dir.lower()  # Assuming directory name is lowercase language name
+            generate_snippets(language_dir_path, language)
+
+    print("Snippets generation completed.")
+
+if __name__ == "__main__":
+    main()
