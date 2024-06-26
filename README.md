@@ -14,7 +14,7 @@ templates/
     ...
 ```
 
-ruls: code snippet should write like belows
+rules: code snippet should write like belows
 ```
 // @snippets-start
 // @snippets-generate true

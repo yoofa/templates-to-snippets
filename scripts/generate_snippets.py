@@ -22,17 +22,20 @@ COMMENT_PREFIXES = {
     # Add more languages as needed
 }
 
+
 def extract_snippets(file_path, language):
     """
     Extracts snippets information from a code file based on specific comments.
     Returns a list of dictionaries, each containing 'description', 'prefix', 'body', and 'generate_snippets' extracted.
     """
-    comment_prefix = COMMENT_PREFIXES.get(language, "//")  # Default to "//" if language not found
+    comment_prefix = COMMENT_PREFIXES.get(
+        language, "//"
+    )  # Default to "//" if language not found
     snippets = []
     snippet_info = None
     in_snippet_block = False
 
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         lines = file.readlines()
 
         for line in lines:
@@ -43,7 +46,7 @@ def extract_snippets(file_path, language):
                     "description": "",
                     "prefix": "",
                     "body": [],
-                    "generate_snippets": False
+                    "generate_snippets": False,
                 }
                 in_snippet_block = True
             elif line.lstrip().startswith(f"{comment_prefix} @snippets-end"):
@@ -52,15 +55,29 @@ def extract_snippets(file_path, language):
                     snippet_info = None
                 in_snippet_block = False
             elif in_snippet_block:
-                if line.lstrip().startswith(f"{comment_prefix} @snippets-generate true"):
+                if line.lstrip().startswith(
+                    f"{comment_prefix} @snippets-generate true"
+                ):
                     if snippet_info:
                         snippet_info["generate_snippets"] = True
-                elif line.lstrip().startswith(f"{comment_prefix} @snippets-description"):
+                elif line.lstrip().startswith(
+                    f"{comment_prefix} @snippets-description"
+                ):
                     if snippet_info:
-                        snippet_info["description"] += line.split(f"{comment_prefix} @snippets-description", 1)[1].strip() + " "
+                        snippet_info["description"] += (
+                            line.split(f"{comment_prefix} @snippets-description", 1)[
+                                1
+                            ].strip()
+                            + " "
+                        )
                 elif line.lstrip().startswith(f"{comment_prefix} @snippets-prefix"):
                     if snippet_info:
-                        snippet_info["prefix"] += line.split(f"{comment_prefix} @snippets-prefix", 1)[1].strip() + " "
+                        snippet_info["prefix"] += (
+                            line.split(f"{comment_prefix} @snippets-prefix", 1)[
+                                1
+                            ].strip()
+                            + " "
+                        )
                 elif not line.lstrip().startswith(comment_prefix):
                     if snippet_info:
                         snippet_info["body"].append(line)
@@ -72,6 +89,7 @@ def extract_snippets(file_path, language):
             snippet["prefix"] = snippet["prefix"].strip()
 
     return snippets
+
 
 def generate_snippets(language_dir, language):
     """
@@ -89,7 +107,7 @@ def generate_snippets(language_dir, language):
                     snippets[f"{snippet_name}_{index}"] = {
                         "prefix": snippet_info["prefix"],
                         "description": snippet_info["description"],
-                        "body": "\n".join(snippet_info["body"])
+                        "body": "\n".join(snippet_info["body"]),
                     }
 
     if not snippets:
@@ -97,8 +115,9 @@ def generate_snippets(language_dir, language):
         return
 
     snippets_file = os.path.join(SNIPPETS_ROOT, f"{language}.json")
-    with open(snippets_file, 'w', encoding='utf-8') as f:
+    with open(snippets_file, "w", encoding="utf-8") as f:
         json.dump(snippets, f, ensure_ascii=False, indent=4)
+
 
 def main():
     if not os.path.exists(SNIPPETS_ROOT):
@@ -107,10 +126,13 @@ def main():
     for language_dir in os.listdir(TEMPLATES_ROOT):
         language_dir_path = os.path.join(TEMPLATES_ROOT, language_dir)
         if os.path.isdir(language_dir_path):
-            language = language_dir.lower()  # Assuming directory name is lowercase language name
+            language = (
+                language_dir.lower()
+            )  # Assuming directory name is lowercase language name
             generate_snippets(language_dir_path, language)
 
     print("Snippets generation completed.")
+
 
 if __name__ == "__main__":
     main()
