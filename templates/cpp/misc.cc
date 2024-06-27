@@ -43,4 +43,28 @@ inline int manhattan_distance(pair<int, int>& a, pair<int, int>& b) {
 // @snippets-end
 
 
+// @snippets-start
+// @snippets-generate true
+// @snippets-description is_prime
+// @snippets-prefix cp_is_prime
+bool is_prime(int n) {
+  if (n < 2) return false;
+  for (int i = 2; i * i <= n; i++) {
+    if (n % i == 0) return false;
+  }
+  return true;
+}
+// @snippets-end
 
+// @snippets-start
+// @snippets-generate true
+// @snippets-description is square number
+// @snippets-prefix cp_is_square_number
+
+bool is_square_number(int n) {
+  int x = sqrt(n);
+  return x * x == n;
+}
+// @snippets-end
+
+//
