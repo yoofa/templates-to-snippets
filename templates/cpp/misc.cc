@@ -23,3 +23,24 @@ int main(int argc, char *argv[]) {
   // misc lambda end
   return 0;
 }
+
+// @snippets-start
+// @snippets-generate true
+// @snippets-description manhattan distance
+// @snippets-prefix cp_manhattan_distance
+inline int manhattan_distance(int x1, int y1, int x2, int y2) {
+  return abs(x1 - x2) + abs(y1 - y2);
+}
+// @snippets-end
+
+// @snippets-start
+// @snippets-generate true
+// @snippets-description manhattan distance pair
+// @snippets-prefix cp_manhattan_distance_pair
+inline int manhattan_distance(pair<int, int>& a, pair<int, int>& b) {
+  return abs(a.first - b.first) + abs(a.second - b.second);
+}
+// @snippets-end
+
+
+
