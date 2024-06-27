@@ -8,13 +8,12 @@
 #include "cp.h"
 
 // misc lambda start
-int main(int argc, char *argv[]) {
-
+int main(int argc, char* argv[]) {
   // @snippets-start
   // @snippets-generate true
   // @snippets-description dfs function
   // @snippets-prefix cp_dfs
-  auto dfs = [&](auto &&dfs, int i) {
+  auto dfs = [&](auto&& dfs, int i) {
     //
     return 0;
   };
@@ -42,15 +41,18 @@ inline int manhattan_distance(pair<int, int>& a, pair<int, int>& b) {
 }
 // @snippets-end
 
-
 // @snippets-start
 // @snippets-generate true
 // @snippets-description is_prime
 // @snippets-prefix cp_is_prime
 bool is_prime(int n) {
-  if (n < 2) return false;
+  if (n < 2) {
+    return false;
+  }
   for (int i = 2; i * i <= n; i++) {
-    if (n % i == 0) return false;
+    if (n % i == 0) {
+      return false;
+    }
   }
   return true;
 }
@@ -64,6 +66,40 @@ bool is_prime(int n) {
 bool is_square_number(int n) {
   int x = sqrt(n);
   return x * x == n;
+}
+// @snippets-end
+
+// @snippets-start
+// @snippets-generate true
+// @snippets-description fast pow
+// @snippets-prefix cp_fast_pow
+int fast_pow(size_t x, int p) {
+  size_t mul = 1;
+  while (p) {
+    if (p & 1) {
+      mul *= x;
+    }
+    x *= x;
+    x >>= 1;
+  }
+  return mul;
+}
+// @snippets-end
+
+// @snippets-start
+// @snippets-generate true
+// @snippets-description fast pow with mod
+// @snippets-prefix cp_fast_pow_mod
+int fast_pow_mod(size_t x, int p, int mod) {
+  size_t mul = 1;
+  while (p) {
+    if (p & 1) {
+      mul = mul * x % mod;
+    }
+    x = x * x % mod;
+    p >>= 1;
+  }
+  return mul;
 }
 // @snippets-end
 
