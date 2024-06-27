@@ -104,7 +104,11 @@ def generate_snippets(language_dir, language):
             snippet_infos = extract_snippets(file_path, language)
             for index, snippet_info in enumerate(snippet_infos):
                 if snippet_info["generate_snippets"]:
-                    snippets[f"{snippet_name}_{index}"] = {
+                    if len(snippet_infos) > 1:
+                        snippet_key = f"{snippet_name}_{index}"
+                    else:
+                        snippet_key = snippet_name
+                    snippets[snippet_key] = {
                         "prefix": snippet_info["prefix"],
                         "description": snippet_info["description"],
                         "body": "\n".join(snippet_info["body"]),
