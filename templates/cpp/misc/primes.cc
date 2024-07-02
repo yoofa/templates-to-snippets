@@ -1,45 +1,11 @@
 /*
- * misc.cc
+ * primes.cc
  * Copyright (C) 2024 youfa <vsyfar@gmail.com>
  *
  * Distributed under terms of the GPLv2 license.
  */
 
-#include "cp.h"
-
-// misc lambda start
-int main(int argc, char* argv[]) {
-  // @snippets-start
-  // @snippets-generate true
-  // @snippets-description dfs function
-  // @snippets-prefix cp_dfs
-  auto dfs = [&](auto&& dfs, int i) {
-    //
-    return 0;
-  };
-  // @snippets-end
-
-  // misc lambda end
-  return 0;
-}
-
-// @snippets-start
-// @snippets-generate true
-// @snippets-description manhattan distance
-// @snippets-prefix cp_manhattan_distance
-inline int manhattan_distance(int x1, int y1, int x2, int y2) {
-  return abs(x1 - x2) + abs(y1 - y2);
-}
-// @snippets-end
-
-// @snippets-start
-// @snippets-generate true
-// @snippets-description manhattan distance pair
-// @snippets-prefix cp_manhattan_distance_pair
-inline int manhattan_distance(pair<int, int>& a, pair<int, int>& b) {
-  return abs(a.first - b.first) + abs(a.second - b.second);
-}
-// @snippets-end
+#include "../cp.h"
 
 // @snippets-start
 // @snippets-generate true
@@ -100,35 +66,35 @@ std::unordered_set<int> primes_set(int n) {
 // @snippets-generate true
 // @snippets-description primes vector under 100
 // @snippets-prefix cp_primes_v_100
-const std::vector<int> primes_v_100 = {2,  3,  5,  7,  11, 13, 17, 19, 23,
-                                       29, 31, 37, 41, 43, 47, 53, 59, 61,
-                                       67, 71, 73, 79, 83, 89, 97};
+std::vector<int> primes_v_100 = {2,  3,  5,  7,  11, 13, 17, 19, 23,
+                                 29, 31, 37, 41, 43, 47, 53, 59, 61,
+                                 67, 71, 73, 79, 83, 89, 97};
 
 // @snippets-end
 
 // @snippets-start
 // @snippets-generate true
 // @snippets-description primes array under 100
-// @snippets-prefix cp_primes_100
-const std::array<int, 25> primes_100 = {2,  3,  5,  7,  11, 13, 17, 19, 23,
-                                        29, 31, 37, 41, 43, 47, 53, 59, 61,
-                                        67, 71, 73, 79, 83, 89, 97};
+// @snippets-prefix cp_primes_a_100
+std::array<int, 25> primes_a_100 = {2,  3,  5,  7,  11, 13, 17, 19, 23,
+                                  29, 31, 37, 41, 43, 47, 53, 59, 61,
+                                  67, 71, 73, 79, 83, 89, 97};
 // @snippets-end
 
 // @snippets-start
 // @snippets-generate true
 // @snippets-description primes set under 100
 // @snippets-prefix cp_primes_set_100
-const std::unordered_set<int> primes_set_100 = {
-    2,  3,  5,  7,  11, 13, 17, 19, 23, 29, 31, 37, 41,
-    43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
+std::unordered_set<int> primes_set_100 = {2,  3,  5,  7,  11, 13, 17, 19, 23,
+                                          29, 31, 37, 41, 43, 47, 53, 59, 61,
+                                          67, 71, 73, 79, 83, 89, 97};
 // @snippets-end
 
 // @snippets-start
 // @snippets-generate true
 // @snippets-description primes vector under 1000
 // @snippets-prefix cp_primes_v_1000
-const std::vector<int> primes_v_1000 = {
+std::vector<int> primes_v_1000 = {
     2,   3,   5,   7,   11,  13,  17,  19,  23,  29,  31,  37,  41,  43,
     47,  53,  59,  61,  67,  71,  73,  79,  83,  89,  97,  101, 103, 107,
     109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181,
@@ -146,8 +112,8 @@ const std::vector<int> primes_v_1000 = {
 // @snippets-start
 // @snippets-generate true
 // @snippets-description primes array under 1000
-// @snippets-prefix cp_primes_1000
-const std::array<int, 168> primes_1000 = {
+// @snippets-prefix cp_primes_a_1000
+std::array<int, 168> primes_a_1000 = {
     2,   3,   5,   7,   11,  13,  17,  19,  23,  29,  31,  37,  41,  43,
     47,  53,  59,  61,  67,  71,  73,  79,  83,  89,  97,  101, 103, 107,
     109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181,
@@ -166,8 +132,7 @@ const std::array<int, 168> primes_1000 = {
 // @snippets-generate true
 // @snippets-description primes set under 1000
 // @snippets-prefix cp_primes_set_1000
-
-const std::unordered_set<int> primes_set_1000 = {
+std::unordered_set<int> primes_set_1000 = {
     2,   3,   5,   7,   11,  13,  17,  19,  23,  29,  31,  37,  41,  43,
     47,  53,  59,  61,  67,  71,  73,  79,  83,  89,  97,  101, 103, 107,
     109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181,
@@ -182,49 +147,4 @@ const std::unordered_set<int> primes_set_1000 = {
     907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997};
 // @snippets-end
 
-// @snippets-start
-// @snippets-generate true
-// @snippets-description is square number
-// @snippets-prefix cp_is_square_number
 
-bool is_square_number(int n) {
-  int x = sqrt(n);
-  return x * x == n;
-}
-// @snippets-end
-
-// @snippets-start
-// @snippets-generate true
-// @snippets-description fast pow
-// @snippets-prefix cp_fast_pow
-int fast_pow(size_t x, int p) {
-  size_t mul = 1;
-  while (p) {
-    if (p & 1) {
-      mul *= x;
-    }
-    x *= x;
-    x >>= 1;
-  }
-  return mul;
-}
-// @snippets-end
-
-// @snippets-start
-// @snippets-generate true
-// @snippets-description fast pow with mod
-// @snippets-prefix cp_fast_pow_mod
-int fast_pow_mod(size_t x, int p, int mod) {
-  size_t mul = 1;
-  while (p) {
-    if (p & 1) {
-      mul = mul * x % mod;
-    }
-    x = x * x % mod;
-    p >>= 1;
-  }
-  return mul;
-}
-// @snippets-end
-
-//
