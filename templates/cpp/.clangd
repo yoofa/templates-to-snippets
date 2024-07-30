@@ -1,0 +1,7 @@
+#Compiler: clang++
+CompileFlags:
+  Add: 
+    - --std=c++2b
+
+
+

@@ -1,0 +1,9 @@
+Checks: '
+  -*,                   # Disable all checks initially
+  bugprone-implicit-widening-of-multiplication-result'
+
+WarningsAsErrors: ''
+HeaderFilterRegex: ''
+AnalyzeTemporaryDtors: false
+FormatStyle:     none
+
