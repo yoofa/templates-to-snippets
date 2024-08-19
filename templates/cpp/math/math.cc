@@ -101,3 +101,43 @@ int fast_pow_mod(size_t x, int p, int mod) {
   return mul;
 }
 // @snippets-end
+
+// @snippets-start
+// @snippets-generate true
+// @snippets-description matrix pow with mod
+// @snippets-prefix cp_matrix_pow_mod
+
+static constexpr int SIZE = 6;
+using Matrix = array<array<int, SIZE>, SIZE>;
+Matrix mul(const Matrix& a, const Matrix& b, int mod) {
+  Matrix c;
+  for (int i = 0; i < SIZE; i++) {
+    for (int j = 0; j < SIZE; j++) {
+      c[i][j] = 0;
+      for (int k = 0; k < SIZE; k++) {
+        c[i][j] = (c[i][j] + 1ll * a[i][k] * b[k][j]) % mod;
+      }
+    }
+  }
+  return c;
+}
+
+Matrix matrix_pow(const Matrix& a, int p, int mod) {
+  Matrix res{};
+  for (int i = 0; i < SIZE; i++) {
+    for (int j = 0; j < SIZE; j++) {
+      res[i][j] = i == j;
+    }
+  }
+  Matrix x = a;
+  while (p) {
+    if (p & 1) {
+      res = mul(res, x, mod);
+    }
+    x = mul(x, x, mod);
+    p >>= 1;
+  }
+  return res;
+}
+
+// @snippets-end
